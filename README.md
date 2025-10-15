@@ -4,7 +4,7 @@ The GSALocalAccess script is designed to enhance the user experience for Global 
 # What challenge GSALocalAccess-Mac solves
 Global Secure Access (GSA) users need the flexibility to bypass GSA and directly access private applications when connected to the corporate network while still being able to access these applications when working remotely through GSA. Enabling or disabling private access on the Global Secure Access client presents a significant challenge due to these varying access needs. To resolve this issue, the GSALocalAccess script offers a streamlined solution, making it easier to manage private access and ensuring seamless connectivity, whether inside or outside the corporate network.
 
-# How GSALocalAccess works
+# How GSALocalAccess-Mac works
 TBD
 
 
