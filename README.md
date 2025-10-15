@@ -9,8 +9,8 @@ TBD
 
 
 ## Script requirements
-Global Secure Access Client should be installed before running the script.
-Intune license, if you need to to push the script using Microsoft Intune.
+- Global Secure Access Client should be installed before running the script.
+- Intune license, if you need to to push the script using Microsoft Intune.
 
 # Deployment
 ## Deploy the script manually
