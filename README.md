@@ -6,6 +6,14 @@ The Corp Network Detector runs as a macOS LaunchAgent in the user's session and 
 
 The script includes intelligent safeguards: it only updates the preference if the current value differs from what's expected, verifies that the change was applied successfully, and logs all actions for troubleshooting. All three log files automatically rotate when they exceed 10,000 lines to prevent disk space issues. The solution requires Full Disk Access for /bin/bash because Microsoft Global Secure Access stores its preferences in a sandboxed container that normal user processes cannot access.
 
+### Core Files
+- **corp_network_check.sh** - The main monitoring script that runs continuously, checking network signatures every 15 seconds, performing DNS lookups when networks change, and updating the Microsoft Global Secure Access preference to enable/disable private access based on corporate network presence.
+- **com.intune.corpnetwork.plist** - The LaunchAgent configuration file that tells macOS to automatically start the monitoring script when the user logs in, keep it running, and restart it if it crashes or when the network becomes available.
+- **install.sh** - The installation script that validates files are in place, sets correct permissions, creates the log file with proper ownership, and loads the LaunchAgent into the user's session to start monitoring.
+- **uninstall.sh** - The removal script that stops and unloads the LaunchAgent, kills any running processes, and deletes all installed files and directories to completely remove the Corp Network Detector from the system.
+- **status.sh** - A diagnostic utility script that checks if the agent is running, displays current network status, shows the Microsoft Global Secure Access preference value, verifies Full Disk Access permissions, and displays recent log entries for troubleshooting.
+- **README.md** - (Note, this file was AI generated) Comprehensive documentation that explains how the solution works, provides installation instructions, describes configuration options, includes troubleshooting steps, and documents all technical details for administrators and users. 
+
 ## Script requirements
 - Global Secure Access Client should be installed before running the script.
 - Intune license, if you need to to push the script using Microsoft Intune.
@@ -22,9 +30,9 @@ The script includes intelligent safeguards: it only updates the preference if th
 | LOG_FILE | File path where script logs are stored. Default path is "/Users/Shared/corp_network_check.log". Set this to a path where you want logs to be stored. | ✅Recommended |
 | STATE_FILE | This file is used to remember the last known network state (on vs off corpnet) which is used as part of the script logic. Default path is "/tmp/corp_network_last_state". You may change this path if you want. | ✅Recommended |
 | CHECK_INTERVAL | Number of seconds between checks. Default is 15 seconds. A check will determine if a network change has occurred. Only if a network change is detected, will the subsequent DNS check occur.  | ✅Yes |
-| MAX_LOG_LINES | Maximum number of log entries to keep before older logs begin being overwritten. Default is 10000.  | ✅Recommended |
+| MAX_LOG_LINES | Maximum number of log entries to keep before older logs begin being overwritten. Default is 10000. Main monitoring logs will be rotated instantly once this threshold is reached while the Standard Output and Standard Error logs will be rotated less less freqently (default every 1 hour).  | ✅Recommended |
 | ROTATION_COUNTER | Starting counter for periodic log rotation. Default is 0.  | ✅Recommended |
-| ROTATION_INTERVAL | Number of checks (from CHECK_INTERVAL) before rotating the Stdout/Stderr Logs. Default is 240. 240 x 15 seconds = 1 hour | ✅Yes |
+| ROTATION_INTERVAL | Number of checks (from CHECK_INTERVAL) before rotating the Stdout/Stderr Logs if they exceed the MAX_LOG_LINES value. Default is 240. 240 x 15 seconds = 1 hour. | ✅Yes |
 
 4. Save the changes.
 5. Open Terminal and run the following commands:
