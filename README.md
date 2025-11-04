@@ -152,7 +152,37 @@ Configure your package with these settings:
 ---
 
 ## (alternative) Step 1: Create the .PKG file using Packages
-Coming soon. For now, just delete the app in Intune and do manual uninstall.
+1. Download and install the [Packages](https://packages.macupdate.com) application on your Mac.
+2. Open **Packages**.
+3. Select **Distribution** and click **Next**.
+4. Enter a Project Name and Project Directory. Click **Create**.
+5. Select the Package you just created on the left nav bar.
+
+![alt text](https://github.com/JeffBley/GSALocalAccess-Mac/blob/main/images/Image1.png?raw=true)
+
+7. In the **Settings** tab, enter an identifier value for this package (example: com.yourcompanyname.appname). Leave the other fields at their default values.
+
+![alt text](https://github.com/JeffBley/GSALocalAccess-Mac/blob/main/images/Image2.png?raw=true)
+
+8. Select the **Payload** tab.
+9. Expand the **Library** folder and right-click on the **Application Support** folder. Select **New Folder**.
+10. Name the folder **corp-network-detector**. NOTE! The folder must be called exactly as shown (case-sensitive).
+11. Right-click the folder **corp-network-detector** and select **Add Files**.
+12. Navigate to and select the **corp_network_check.sh** file. Click **Add**.
+13. Next, right-click on the folder **LaunchAgents** (located under Library) and click **Add Files**.
+14. Navigate to and select the **com.intune.corpnetwork.plist** file. Click **Add**.
+
+![alt text](https://github.com/JeffBley/GSALocalAccess-Mac/blob/main/images/Image3.png?raw=true)
+
+15.  Select the **Scripts** tab.
+16.  Under **Post-installation** click **Choose**.
+17.  Navigate to and select the **install.sh** file. Click **Choose**.
+18.  In the menu bar, click **Build** and select **Build**.
+
+![alt text](https://github.com/JeffBley/GSALocalAccess-Mac/blob/main/images/Image4.png?raw=true)
+
+19.   Follow any prompts to save or allow the action.
+20.   Open the Build folder to find your Pkg file (saved in the Project Directory you configured in step #4).  
 
 ## Step 2: Deploy the .PKG file with Intune
 1. Go to Intune.microsoft.com > Apps > macOS > Click **Create**. 
