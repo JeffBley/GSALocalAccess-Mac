@@ -19,7 +19,8 @@ The script includes intelligent safeguards: it only updates the preference if th
 - Intune license, if you need to to push the script using Microsoft Intune.
 - An app or other method to create a `.pkg` file such as Packages, pkgbuild, Composer, etc.
 
-# Deploy the script manually
+# Prepare the .sh script
+Whether you are installing this manually or via Intune, you first need to update the `.sh` script. Perform the following steps:
 1. Download the corp-network-detector-mac.zip file to your Mac.
 2. Extract or unzip the file.
 3. Open and modify the corp_network_check.sh file:
@@ -35,8 +36,9 @@ The script includes intelligent safeguards: it only updates the preference if th
 | ROTATION_INTERVAL | Number of checks (from CHECK_INTERVAL) before rotating the Stdout/Stderr Logs if they exceed the MAX_LOG_LINES value. Default is 240. 240 x 15 seconds = 1 hour. | ✅Recommend leave at default |
 
 4. Save the changes.
-5. Open Terminal and run the following commands:
 
+# Deploy the script manually
+Open Terminal and run the following commands:
 ```
 # Navigate to the unzipped directory
 cd /path/to/corp-network-detector
