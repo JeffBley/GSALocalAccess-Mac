@@ -186,7 +186,7 @@ Configure your package with these settings:
 19.   Follow any prompts to save or allow the action.
 20.   Open the Build folder to find your `.pkg` file (saved in the Project Directory you configured in step #4).  
 
-## Step 2: Deploy the .PKG file with Intune
+## Step 2: Deploy the .pkg file with Intune
 1. Go to Intune.microsoft.com > Apps > macOS > Click **Create**. 
 2. Under App Type select **macOS app (PKG)**
 3. Click **Select**. 
