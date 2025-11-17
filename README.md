@@ -17,7 +17,7 @@ The script includes intelligent safeguards: it only updates the preference if th
 ## Script requirements
 - Global Secure Access Client should be installed before running the script.
 - Intune license, if you need to to push the script using Microsoft Intune.
-- An app or other method to create a .PKG file such as Packages, pkgbuild, Composer, etc.
+- An app or other method to create a `.pkg` file such as Packages, pkgbuild, Composer, etc.
 
 # Deploy the script manually
 1. Download the corp-network-detector-mac.zip file to your Mac.
@@ -76,9 +76,9 @@ sudo bash ./uninstall.sh
 ```
 
 # Deploy the script via Intune
-Before you begin creating the .PKG file be sure you have modified the **corp_network_check.sh** file as needed.
+Before you begin creating the `.pkg` file be sure you have modified the **corp_network_check.sh** file as needed.
 
-## Step 1: Create the .PKG file (Generic Instructions)
+## Step 1: Create the .pkg file (Generic Instructions)
 This guide provides generic instructions for creating a macOS installer package (.pkg) for the Corp Network Detector. These instructions should work with any package creation tool (Packages, pkgbuild, Composer, etc.).
 
 ---
@@ -151,7 +151,7 @@ Configure your package with these settings:
 
 ---
 
-## (alternative) Step 1: Create the .PKG file using Packages
+## (alternative) Step 1: Create the .pkg file using Packages
 1. Download and install the [Packages](https://packages.macupdate.com) application on your Mac.
 2. Open **Packages**.
 3. Select **Distribution** and click **Next**.
@@ -182,13 +182,13 @@ Configure your package with these settings:
 ![alt text](https://github.com/JeffBley/GSALocalAccess-Mac/blob/main/images/Image4.png?raw=true)
 
 19.   Follow any prompts to save or allow the action.
-20.   Open the Build folder to find your Pkg file (saved in the Project Directory you configured in step #4).  
+20.   Open the Build folder to find your `.pkg` file (saved in the Project Directory you configured in step #4).  
 
 ## Step 2: Deploy the .PKG file with Intune
 1. Go to Intune.microsoft.com > Apps > macOS > Click **Create**. 
 2. Under App Type select **macOS app (PKG)**
 3. Click **Select**. 
-4. Select the .pkg file and click **OK**. 
+4. Select the `.pkg` file and click **OK**. 
 5. Give it a name, description, and publisher. Click **Next**. 
 6. Click **Next** (Skipping Program).
 7. Select a minimum operating system and click **Next**. 
@@ -197,7 +197,7 @@ Configure your package with these settings:
 10. Click **Create**.
 
 # Rollback script post-Intune Deployment
-Coming soon.
+To uninstall the `.pkg` file you deployed via Intune, you must unassign your users from the GSALocalAccess-Mac app in Intune and create and deploy an uninstall `.pkg` file. You may either use the `UninstallGSALocalAccess-Mac.pkg` file in this GitHub repo or create your own. If you create your own, create an empty `.pkg` file and upload the uninstall.sh script as the post-installation script. Deploy the UninstallGSALocalAccess-Mac.pkg via Intune as described [above](https://github.com/JeffBley/GSALocalAccess-Mac/tree/main?tab=readme-ov-file#step-2-deploy-the-pkg-file-with-intune).
 
 # Troubleshooting Logs and Their Purposes
 ## 1. Main Monitoring Log
